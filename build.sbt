@@ -17,7 +17,7 @@ resolvers ++= Seq(
     )
 
 libraryDependencies ++= Seq(
-  "org.webjars" % "jshint-node" % "2.4.3",
+  "org.webjars" % "jshint-node" % "2.6.3-2",
   "org.webjars" % "strip-json-comments" % "1.0.2-1"
 )
 
