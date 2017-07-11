@@ -36,6 +36,13 @@ object SbtJSHint extends AutoPlugin {
   import SbtJsTask.autoImport.JsTaskKeys._
   import autoImport.JshintKeys._
 
+  override def buildSettings = inTask(jshint)(
+    SbtJsTask.jsTaskSpecificUnscopedBuildSettings ++ Seq(
+      moduleName := "jshint",
+      shellFile := getClass.getClassLoader.getResource("jshint-shell.js")
+    )
+  )
+
   override def projectSettings = Seq(
     config := None,
     resolvedConfig := {
@@ -55,9 +62,7 @@ object SbtJSHint extends AutoPlugin {
       }: Option[File]
     }
   ) ++ inTask(jshint)(
-    SbtJsTask.jsTaskSpecificUnscopedSettings ++ Seq(
-      moduleName := "jshint",
-      shellFile := getClass.getClassLoader.getResource("jshint-shell.js"),
+    SbtJsTask.jsTaskSpecificUnscopedProjectSettings ++ Seq(
       includeFilter in Assets := (jsFilter in Assets).value,
       includeFilter in TestAssets := (jsFilter in TestAssets).value,
 

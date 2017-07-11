@@ -7,4 +7,4 @@ libraryDependencies ++= Seq(
   "org.webjars" % "strip-json-comments" % "1.0.2-1"
 )
 
-addSbtJsEngine("1.1.3")
+addSbtJsEngine("1.2.1")
