@@ -9,7 +9,7 @@ JS engine execution.
 
 To use this plugin use the addSbtPlugin command within your project's plugins.sbt (or as a global setting) i.e.:
 
-    addSbtPlugin("com.typesafe.sbt" % "sbt-jshint" % "1.0.5")
+    addSbtPlugin("com.typesafe.sbt" % "sbt-jshint" % "1.0.6")
 
 Your project's build file also needs to enable sbt-web plugins. For example with build.sbt:
 
@@ -24,4 +24,4 @@ provide a `.jshintrc` file within your project's base directory. If there is no 
 be search for in your home directory. This behaviour can be overridden by using a `JshintKeys.config` setting for the plugin.
 `JshintKeys.config` is used to specify the location of a configuration file.
 
-&copy; Typesafe Inc., 2013, 2014
+&copy; 2013-2017 [Lightbend Inc.](https://www.lightbend.com)
