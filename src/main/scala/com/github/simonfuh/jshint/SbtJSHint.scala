@@ -1,24 +1,11 @@
-package com.typesafe.sbt.jshint
+package com.github.simonfuh.jshint
 
-import sbt._
-import sbt.Keys._
-import sbt.File
-import scala.Some
 import com.typesafe.sbt.jse.SbtJsTask
 import com.typesafe.sbt.web.SbtWeb
+import sbt.Keys.{baseDirectory, includeFilter, moduleName}
+import sbt.{AllRequirements, AutoPlugin, File, IO, file, inTask}
 
-object Import {
-
-  object JshintKeys {
-
-    val jshint = TaskKey[Seq[File]]("jshint", "Perform JavaScript linting.")
-
-    val config = SettingKey[Option[File]]("jshint-config", "The location of a JSHint configuration file.")
-    val resolvedConfig = TaskKey[Option[File]]("jshint-resolved-config", "The actual location of a JSHint configuration file if present. If jshint-config is none then the task will seek a .jshintrc in the project folder. If that's not found then .jshintrc will be searched for in the user's home folder. This behaviour is consistent with other JSHint tooling.")
-
-  }
-
-}
+import scala.reflect.io.Path.jfile2path
 
 /**
  * The sbt plugin plumbing around the JSHint library.
@@ -31,9 +18,9 @@ object SbtJSHint extends AutoPlugin {
 
   val autoImport = Import
 
+  import SbtJsTask.autoImport.JsTaskKeys._
   import SbtWeb.autoImport._
   import WebKeys._
-  import SbtJsTask.autoImport.JsTaskKeys._
   import autoImport.JshintKeys._
 
   override def buildSettings = inTask(jshint)(
@@ -48,13 +35,14 @@ object SbtJSHint extends AutoPlugin {
     resolvedConfig := {
       config.value.orElse {
         val JsHintRc = ".jshintrc"
+//        val projectRc = baseDirectory.value / JsHintRc
         val projectRc = baseDirectory.value / JsHintRc
-        if (projectRc.exists()) {
-          Some(projectRc)
+        if (projectRc.jfile.exists()) {
+          Some(projectRc.jfile)
         } else {
           val homeRc = file(System.getProperty("user.home")) / JsHintRc
-          if (homeRc.exists()) {
-            Some(homeRc)
+          if (homeRc.jfile.exists()) {
+            Some(homeRc.jfile)
           } else {
             None
           }
