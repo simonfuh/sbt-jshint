@@ -11,8 +11,8 @@ JS engine execution.
 
 To use this plugin use the addSbtPlugin command within your project's plugins.sbt (or as a global setting) i.e.:
 
-[comment]: <> (    addSbtPlugin&#40;"com.typesafe.sbt" % "sbt-jshint" % "0.0.2"&#41;)
-    addSbtPlugin("com.github.simonfuh" % "sbt-jshint" % "0.0.2")
+[comment]: <> (    addSbtPlugin&#40;"com.typesafe.sbt" % "sbt-jshint" % "0.0.3"&#41;)
+    addSbtPlugin("com.github.simonfuh" % "sbt-jshint" % "0.0.3")
 
 Your project's build file also needs to enable sbt-web plugins. For example with build.sbt:
 
