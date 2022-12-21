@@ -13,6 +13,10 @@
  * Json array tuples are sent to stdout for each file in error (if any). Each tuple is an array where the
  * element 0 corresponds to the file path of the file linted, and element 1 is JSHINT.errors.
  */
+//import console from 'console'
+//import fs from 'fs'
+//import jshint from 'jshint'
+//import stripJsonComments from 'stripJsonComments'
 
 (function () {
 
